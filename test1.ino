@@ -1,10 +1,12 @@
+/*
+//¼üÅÌ²âÊÔ
 // Visual Micro is in vMicro>General>Tutorial Mode
 // 
-/*
+
     Name:       test1.ino
     Created:	2021/1/15 21:08:10
     Author:     WUJIGR\Administrator
-*/
+
 
 // Define User Types below here or use a .h file
 //
@@ -56,4 +58,39 @@ void loop()
 			digitalWrite(ledList[i], LOW);
 	}
 	delay(50);
+}
+*/
+
+
+
+//bh1750fvi
+// Visual Micro is in vMicro>General>Tutorial Mode
+// 
+/*
+	Name:       test1.ino
+	Created:	2021/1/15 21:08:10
+	Author:     WUJIGR\Administrator
+*/
+
+// Define User Types below here or use a .h file
+//
+
+
+// Define Function Prototypes that use User Types below here or use a .h file
+#include "BH1750FVI.h"
+#include <Wire.h> //IIC
+#include <math.h>
+
+BH1750FVIClass a = BH1750FVIClass(0X10);
+
+void setup()
+{
+	Serial.begin(9600);
+}
+
+void loop()
+{
+	Serial.println(a.read());
+	Serial.println("[lx]");
+	delay(1000);
 }

@@ -1,0 +1,4 @@
+VCC-5V
+SDA(数据接口)--A4
+SCL(时钟接口)--A5
+GND--GND
