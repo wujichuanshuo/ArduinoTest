@@ -158,7 +158,7 @@ void loop()
 */
 
 
-
+/*
 //继电器
 // Visual Micro is in vMicro>General>Tutorial Mode
 // 
@@ -190,3 +190,41 @@ void loop()
 	digitalWrite(2, LOW); //LOW to poweroff the LED light on jidianqi
 	delay(3000);
 }
+*/
+
+//MQ9可燃气体/MQ135空气质量
+//3为阈值
+//AOUT->A0	
+// Visual Micro is in vMicro>General>Tutorial Mode
+// 
+
+	//Name:       test1.ino
+	//Created:	2021年1月21日11点45分
+	//Author:     WUJIGR\Administrator
+
+
+// Define User Types below here or use a .h file
+//
+
+
+// Define Function Prototypes that use User Types below here or use a .h file
+
+const int gasSensor = 0;
+void setup()
+{
+	Serial.begin(9600);
+}
+
+void loop()
+{
+	float voltage;
+	voltage = getVoltage(gasSensor);
+
+	Serial.println(voltage);
+	delay(1000);
+
+}
+float getVoltage(int pin) {
+	return (analogRead(pin) * 0.004882814);
+}
+
