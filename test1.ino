@@ -63,14 +63,15 @@ void loop()
 
 
 
+/*
 //bh1750fvi
 // Visual Micro is in vMicro>General>Tutorial Mode
 // 
-/*
-	Name:       test1.ino
-	Created:	2021/1/15 21:08:10
-	Author:     WUJIGR\Administrator
-*/
+
+	//Name:       test1.ino
+	//Created:	2021/1/20 21:08:10
+	//Author:     WUJIGR\Administrator
+
 
 // Define User Types below here or use a .h file
 //
@@ -93,4 +94,64 @@ void loop()
 	Serial.println(a.read());
 	Serial.println("[lx]");
 	delay(1000);
+}
+*/
+
+
+
+//DH11
+//记得装上拉电阻
+// Visual Micro is in vMicro>General>Tutorial Mode
+// 
+
+	//Name:       test1.ino
+	//Created:	2021/1/20 21:08:10
+	//Author:     WUJIGR\Administrator
+
+
+// Define User Types below here or use a .h file
+//
+
+
+// Define Function Prototypes that use User Types below here or use a .h file
+
+#define DHTIN 2
+#include <TroykaDHT.h>
+
+DHT dht(DHTIN, DHT11);
+void setup()
+{
+	Serial.begin(9600);
+	dht.begin();
+}
+
+void loop()
+{
+	dht.read();
+	switch (dht.getState()) {
+	case DHT_OK:
+		Serial.print("Temperature = ");
+		Serial.print(dht.getTemperatureC());
+		Serial.println(" C \t");
+		Serial.print("Temperature = ");
+		Serial.print(dht.getTemperatureK());
+		Serial.println(" K \t");
+		Serial.print("Temperature = ");
+		Serial.print(dht.getTemperatureF());
+		Serial.println(" F \t");
+		Serial.print("Humidity = ");
+		Serial.print(dht.getHumidity());
+		Serial.println(" %");
+		break;
+	case DHT_ERROR_CHECKSUM:
+		Serial.println("Checksum error");
+		break;
+	case DHT_ERROR_TIMEOUT:
+		Serial.println("Time out error");
+		break;
+	case DHT_ERROR_NO_REPLY:
+		Serial.println("Sensor not connected");
+		break;
+	}
+	delay(2000);
 }
