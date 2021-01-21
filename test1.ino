@@ -98,14 +98,14 @@ void loop()
 */
 
 
-
+/*
 //DH11
 //记得装上拉电阻
 // Visual Micro is in vMicro>General>Tutorial Mode
 // 
 
 	//Name:       test1.ino
-	//Created:	2021/1/20 21:08:10
+	//Created:	2021年1月21日10点29分
 	//Author:     WUJIGR\Administrator
 
 
@@ -154,4 +154,39 @@ void loop()
 		break;
 	}
 	delay(2000);
+}
+*/
+
+
+
+//继电器
+// Visual Micro is in vMicro>General>Tutorial Mode
+// 
+
+	//Name:       test1.ino
+	//Created:	2021年1月21日11点29分
+	//Author:     WUJIGR\Administrator
+
+
+// Define User Types below here or use a .h file
+//
+
+
+// Define Function Prototypes that use User Types below here or use a .h file
+
+
+void setup()
+{
+	Serial.begin(9600);
+	pinMode(2, OUTPUT);
+}
+
+void loop()
+{
+	Serial.println("HIGH");
+	digitalWrite(2, HIGH);
+	delay(3000);
+	Serial.println("LOW");
+	digitalWrite(2, LOW); //LOW to poweroff the LED light on jidianqi
+	delay(3000);
 }
