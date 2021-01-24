@@ -192,6 +192,7 @@ void loop()
 }
 */
 
+/*
 //MQ9可燃气体/MQ135空气质量
 //3为阈值
 //AOUT->A0	
@@ -208,6 +209,7 @@ void loop()
 
 
 // Define Function Prototypes that use User Types below here or use a .h file
+
 
 const int gasSensor = 0;
 void setup()
@@ -227,4 +229,40 @@ void loop()
 float getVoltage(int pin) {
 	return (analogRead(pin) * 0.004882814);
 }
+*/
 
+
+//YS-IRTM红外线编码模块
+// Visual Micro is in vMicro>General>Tutorial Mode
+// 
+
+	//Name:       test1.ino
+	//Created:	2021年1月21日11点45分
+	//Author:     WUJIGR\Administrator
+
+
+// Define User Types below here or use a .h file
+//
+#include "YS_IRTM.h"
+
+// Define Function Prototypes that use User Types below here or use a .h file
+
+//RXD读入接口，TXD输出接口
+
+YS_IRTMClass ys(8, 9);
+void setup()
+{
+	Serial.begin(9600);
+}
+
+void loop()
+{
+	//Serial.print("123");
+	if (ys.available())
+		Serial.write(ys.read());
+	//if (Serial.available())
+	//	mySerial.write(Serial.read());
+	uint8_t a[] = {0X22,0XDD,0XDC};
+	ys.write(a, 3);
+	delay(1000);
+}
