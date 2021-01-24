@@ -88,7 +88,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\test1;E:\arduino-1.8.12\hardware\arduino\avr\libraries\Wire\src;E:\arduino-1.8.12\hardware\arduino\avr\cores\arduino;E:\arduino-1.8.12\hardware\arduino\avr\variants\standard;E:\arduino-1.8.12\hardware\tools\avr\\lib\gcc\avr\7.3.0\include;E:\arduino-1.8.12\hardware\tools\avr\avr\include;E:\arduino-1.8.12\hardware\tools\avr\\lib\gcc\avr\7.3.0\include;E:\arduino-1.8.12\hardware\tools\avr\avr\include-fixed;E:\arduino-1.8.12\hardware\tools\avr\avr\include\avr;E:\arduino-1.8.12\hardware\tools\avr\lib\gcc\avr\4.9.2\include;E:\arduino-1.8.12\hardware\tools\avr\lib\gcc\avr\4.9.2\include;E:\arduino-1.8.12\hardware\tools\avr\lib\gcc\avr\4.9.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\test1;$(ProjectDir)..\libraries\Keypad\src;E:\arduino-1.8.12\hardware\arduino\avr\cores\arduino;E:\arduino-1.8.12\hardware\arduino\avr\variants\standard;E:\arduino-1.8.12\hardware\tools\avr\\lib\gcc\avr\7.3.0\include;E:\arduino-1.8.12\hardware\tools\avr\avr\include;E:\arduino-1.8.12\hardware\tools\avr\\lib\gcc\avr\7.3.0\include;E:\arduino-1.8.12\hardware\tools\avr\avr\include-fixed;E:\arduino-1.8.12\hardware\tools\avr\avr\include\avr;E:\arduino-1.8.12\hardware\tools\avr\lib\gcc\avr\4.9.2\include;E:\arduino-1.8.12\hardware\tools\avr\lib\gcc\avr\4.9.2\include;E:\arduino-1.8.12\hardware\tools\avr\lib\gcc\avr\4.9.3\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>$(ProjectDir)__vm\.test1.vsarduino.h;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <IgnoreStandardIncludePath>true</IgnoreStandardIncludePath>
       <PreprocessorDefinitions>__AVR_atmega328p__;__AVR_ATmega328P__;__AVR_ATmega328p__;_VMDEBUG=1;F_CPU=16000000L;ARDUINO=108012;ARDUINO_AVR_UNO;ARDUINO_ARCH_AVR;__cplusplus=201103L;_VMICRO_INTELLISENSE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -106,13 +106,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BH1750FVI.h">
-      <FileType>CppCode</FileType>
-    </ClInclude>
     <ClInclude Include="__vm\.test1.vsarduino.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="BH1750FVI.cpp" />
   </ItemGroup>
   <PropertyGroup>
     <DebuggerFlavor>VisualMicroDebugger</DebuggerFlavor>
