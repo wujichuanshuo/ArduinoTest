@@ -231,7 +231,7 @@ float getVoltage(int pin) {
 }
 */
 
-
+/*
 //YS-IRTM红外线编码模块
 // Visual Micro is in vMicro>General>Tutorial Mode
 // 
@@ -265,4 +265,47 @@ void loop()
 	uint8_t a[] = {0X22,0XDD,0XDC};
 	ys.write(a, 3);
 	delay(1000);
+}
+*/
+
+//步进电机ULN2003
+// Visual Micro is in vMicro>General>Tutorial Mode
+//
+
+	//Name:       test1.ino
+	//Created:	  2021年1月25日00点09分
+	//Author:     WUJIGR\Administrator
+
+
+// Define User Types below here or use a .h file
+//
+
+
+// Define Function Prototypes that use User Types below here or use a .h file
+
+
+#include <Stepper.h>
+#define STEPS 100
+Stepper stepper(STEPS, 2, 4, 3, 5);
+void setup()
+{
+	Serial.begin(9600);
+	// 设置电机的转速：每分钟为90步
+	stepper.setSpeed(90);
+	// 初始化串口，用于调试输出信息
+	Serial.begin(9600);
+}
+
+void loop()
+{
+	// 顺时针旋转一周
+	Serial.println("shun");
+	stepper.step(2048); //4步模式下旋转一周用2048 步。
+	delay(500);
+
+	// 逆时针旋转半周
+	Serial.println("ni");
+	stepper.step(-1024); //4步模式下旋转一周用2048 步。
+	delay(500);
+
 }
