@@ -268,44 +268,62 @@ void loop()
 }
 */
 
-//步进电机ULN2003
+//红外传感器
 // Visual Micro is in vMicro>General>Tutorial Mode
 //
-
-	//Name:       test1.ino
-	//Created:	  2021年1月25日00点09分
-	//Author:     WUJIGR\Administrator
-
-
+//
+//	Name:       test1.ino
+//	Created:	  2021年1月25日00点09分
+//	Author:     WUJIGR\Administrator
+//
+//
 // Define User Types below here or use a .h file
 //
-
-
+//
+//
 // Define Function Prototypes that use User Types below here or use a .h file
 
 
-#include <Stepper.h>
-#define STEPS 100
-Stepper stepper(STEPS, 2, 4, 3, 5);
+#include "YS_IRTM.h"
+
+ //Define Function Prototypes that use User Types below here or use a .h file
+
+#include <IRremote.h>
+int state = 0;
+int RECV_PIN = 2;
+int LED_PIN = 3 ;
+
+IRrecv irrecv(RECV_PIN);
+decode_results results;
 void setup()
 {
+	irrecv.enableIRIn();
 	Serial.begin(9600);
-	// 设置电机的转速：每分钟为90步
-	stepper.setSpeed(90);
-	// 初始化串口，用于调试输出信息
-	Serial.begin(9600);
+	pinMode(LED_PIN, OUTPUT);
+	digitalWrite(LED_PIN , LOW);
 }
 
 void loop()
 {
-	// 顺时针旋转一周
-	Serial.println("shun");
-	stepper.step(2048); //4步模式下旋转一周用2048 步。
-	delay(500);
-
-	// 逆时针旋转半周
-	Serial.println("ni");
-	stepper.step(-1024); //4步模式下旋转一周用2048 步。
-	delay(500);
-
+	//Serial.print("123");
+	if (irrecv.decode(&results)) {
+		Serial.println(results.value,HEX);
+		Serial.println(results.bits);
+		if (results.value == 0x0) //开灯的值
+		{
+			if (state) {
+				state = !state;
+				digitalWrite(LED_PIN, LOW);
+			}
+			else
+			{
+				state = !state;
+				digitalWrite(LED_PIN, HIGH);
+			}
+		}
+		irrecv.resume(); // Receive the next value
+	}
+	delay(1000);
 }
+
+

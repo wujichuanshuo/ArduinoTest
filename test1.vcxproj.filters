@@ -21,5 +21,19 @@
     <ClInclude Include="__vm\.test1.vsarduino.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="BH1750FVI.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="YS_IRTM.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="BH1750FVI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="YS_IRTM.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
