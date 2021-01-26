@@ -284,32 +284,35 @@ void loop()
 // Define Function Prototypes that use User Types below here or use a .h file
 
 
-#include "YS_IRTM.h"
+#include<SoftwareSerial.h>
 
  //Define Function Prototypes that use User Types below here or use a .h file
 
-#include <IRremote.h>
-int state = 0;
-int RECV_PIN = 2;
-int LED_PIN = 3 ;
 
-IRrecv irrecv(RECV_PIN);
-decode_results results;
+SoftwareSerial ys(2, 3);
+int state = 0;
+int LED_PIN = 4;
 void setup()
 {
-	irrecv.enableIRIn();
 	Serial.begin(9600);
+	ys.begin(9600);
 	pinMode(LED_PIN, OUTPUT);
-	digitalWrite(LED_PIN , LOW);
+	digitalWrite(LED_PIN, LOW);
 }
 
 void loop()
 {
 	//Serial.print("123");
-	if (irrecv.decode(&results)) {
-		Serial.println(results.value,HEX);
-		Serial.println(results.bits);
-		if (results.value == 0x0) //开灯的值
+	if (ys.available())
+	{
+		uint8_t a[3];
+		a[0] =  ys.read();
+		a[1] = ys.read();
+		a[2] = ys.read();
+		Serial.write(a[0]);
+		Serial.write(a[1]);
+		Serial.write(a[2]);
+		if (a[0] == uint8_t(0x00)&& a[1] == uint8_t(0xff)&& a[2] == uint32_t(0x45)) //开灯的值
 		{
 			if (state) {
 				state = !state;
@@ -321,8 +324,10 @@ void loop()
 				digitalWrite(LED_PIN, HIGH);
 			}
 		}
-		irrecv.resume(); // Receive the next value
 	}
+		
+	//if (Serial.available())
+	//	mySerial.write(Serial.read());
 	delay(1000);
 }
 

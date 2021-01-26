@@ -11,8 +11,7 @@ YS_IRTMClass::YS_IRTMClass(int RX, int TX)
 {
 	RXD = RX;
 	TXD = TX;
-	SoftwareSerial a = SoftwareSerial(8, 9);
-	mySerial = &a;
+	mySerial = &SoftwareSerial(RX, TX);
 	mySerial->begin(9600);
 }
 
