@@ -292,6 +292,8 @@ void loop()
 SoftwareSerial ys(2, 3);
 int state = 0;
 int LED_PIN = 4;
+int keep1 = 0;
+unsigned long nextTime = 0;
 void setup()
 {
 	Serial.begin(9600);
@@ -302,32 +304,49 @@ void setup()
 
 void loop()
 {
-	//Serial.print("123");
+	unsigned long z = millis();
+	Serial.println(z);
 	if (ys.available())
 	{
 		uint8_t a[3];
-		a[0] =  ys.read();
+		a[0] = ys.read();
 		a[1] = ys.read();
 		a[2] = ys.read();
-		Serial.write(a[0]);
-		Serial.write(a[1]);
-		Serial.write(a[2]);
-		if (a[0] == uint8_t(0x00)&& a[1] == uint8_t(0xff)&& a[2] == uint32_t(0x45)) //开灯的值
+
+		if (a[0] == uint8_t(0x00)&& a[1] == uint8_t(0xff)&& a[2] == uint8_t(0x45)) //开灯的值
 		{
 			if (state) {
 				state = !state;
 				digitalWrite(LED_PIN, LOW);
+				keep1 = 0;
+				nextTime = 0;
 			}
 			else
 			{
 				state = !state;
 				digitalWrite(LED_PIN, HIGH);
+				keep1 = 0;
+				nextTime = 0;
 			}
 		}
+		if (a[0] == uint8_t(0x00) && a[1] == uint8_t(0xff) && a[2] == uint8_t(0x46)) //延时按钮
+		{
+			keep1 = 1;
+			nextTime = millis() + 20 * 60 * 1000;
+			state = 1;
+			digitalWrite(LED_PIN, HIGH);
+			keep1 = 0;
+			nextTime = 0;
+		}
 	}
-		
-	//if (Serial.available())
-	//	mySerial.write(Serial.read());
+	if (keep1) {
+		if (millis() > nextTime) {
+			keep1 = 0;
+			nextTime = 0;
+			state = 0;
+			digitalWrite(LED_PIN, LOW);
+		}
+	}
 	delay(1000);
 }
 
